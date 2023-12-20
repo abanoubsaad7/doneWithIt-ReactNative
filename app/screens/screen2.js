@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems: 'center',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    width: Platform.OS === 'web' ? '100%' : 500 ,
   },
 })
 
