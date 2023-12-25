@@ -13,7 +13,7 @@ import axios from "axios";
 
 const Profile = ({navigation}) =>{
 
-  const apiUrl = Platform.OS === 'web' ? 'http://localhost:7500/profile' : 'http://192.168.1.3:7500/profile'; // don't forget to change ip address for the apiUrl
+  const apiUrl = Platform.OS === 'web' ? 'http://localhost:7500/profile' : 'http://192.168.1.10:7500/profile'; // don't forget to change ip address for the apiUrl
   const [userData,setUserData] = useState(null);
 
   useEffect(()=>{

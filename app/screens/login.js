@@ -14,7 +14,7 @@ const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const apiUrl = Platform.OS === 'web' ? 'http://localhost:7500/login' : 'http://192.168.1.3:7500/login'; // don't forget to change ip address for the apiUrl
+  const apiUrl = Platform.OS === 'web' ? 'http://localhost:7500/login' : 'http://192.168.1.10:7500/login'; // don't forget to change ip address for the apiUrl
 
   // Prepare the data to be sent in the request body
   const data = {

@@ -1,11 +1,11 @@
 // Screen1.js
 import React , {useEffect,useState} from 'react';
-import { View, Text, StyleSheet, Button, Image ,ImageBackground, TouchableOpacity , StatusBar , Platform} from 'react-native';
+import {ScrollView, View, Text, StyleSheet, Button, Image ,ImageBackground, TouchableOpacity , StatusBar , Platform} from 'react-native';
 import axios from 'axios';
 const Screen1 = ({ navigation }) => {
 
   const [product, setProduct] = useState("");
-  const apiUrl = Platform.OS === 'web' ? 'http://localhost:7500/product' : 'http://192.168.1.3:7500/product'; // don't forget to change ip address for the apiUrl
+  const apiUrl = Platform.OS === 'web' ? 'http://localhost:7500/product' : 'http://192.168.1.10:7500/product'; // don't forget to change ip address for the apiUrl
 
   useEffect(()=>{
     axios.get(apiUrl)
@@ -21,19 +21,28 @@ const Screen1 = ({ navigation }) => {
     
   ,[])
 
+  const renderProduct = () => {
+    return product.map((item) => (
+      <View key={item._id}>
+        <TouchableOpacity>
+          <Image source={{ uri: `https://paper-spice-bambiraptor.glitch.me/productImg/${item.imgPath}` }} style={{ width: 200, height: 200 }} />
+        </TouchableOpacity>
+        <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Name: {item.proTitle}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Price: {item.proPrice} Taio</Text>
+      </View>
+    ));
+  }
+  
+
   return (
     <View style={styles.container}>
-      <ImageBackground source={require('../assets/icon.png')} style={styles.container}>
-        <TouchableOpacity onPress={()=> console.log('hiiii')}>
-          <Image source={require('../assets/esmo.png')} style={{width:400 , height:400}} resizeMode='contain' />
-        </TouchableOpacity>
-        <Text>Screen 1</Text>
+        {renderProduct()}
         <Button
           title="Go to Screen 2"
           onPress={() => navigation.navigate('Screen2')}
         />
         <Button title='logIn' onPress={()=> navigation.navigate('LogIn') } /> 
-      </ImageBackground>
+
     </View>
   );
 };
